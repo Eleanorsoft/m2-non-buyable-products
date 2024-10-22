@@ -30,7 +30,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isModuleEnabled(): bool
     {
-        return $this->getConfig('sales/non_buyable_products/active');
+        return $this->getConfig('sales/non_buyable_products/active') ?? 0;
     }
 
     /**
@@ -38,7 +38,23 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getHidePriceConfigData(): bool
     {
-        return $this->getConfig('sales/non_buyable_products/hide_price');
+        return $this->getConfig('sales/non_buyable_products/hide_price') ?? 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideWishlistConfigData(): bool
+    {
+        return $this->getConfig('sales/non_buyable_products/hide_wishlist') ?? 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideCompareConfigData()
+    {
+        return $this->getConfig('sales/non_buyable_products/hide_compare') ?? 0;
     }
 
     /**
@@ -46,7 +62,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getReplacementPhraseForPrice()
     {
-        return $this->getConfig('sales/non_buyable_products/replacement_price');
+        return $this->getConfig('sales/non_buyable_products/replacement_price') ?? '';
     }
 
     /**
@@ -54,6 +70,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getReplacementPhraseForAddToCart()
     {
-        return $this->getConfig('sales/non_buyable_products/replacement_add_to_cart');
+        return $this->getConfig('sales/non_buyable_products/replacement_add_to_cart') ?? '';
     }
 }

@@ -94,7 +94,7 @@ class AddNonBuyableAttributeToAttributeSets implements DataPatchInterface, Patch
             [
                 'group'         => self::ATTRIBUTE_GROUP,
                 'type'          => 'varchar',
-                'label'         => 'Can be bought?',
+                'label'         => 'Non salable',
                 'input'    => 'boolean',
                 'source'   => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
                 'required'      => false,

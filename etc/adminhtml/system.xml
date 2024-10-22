@@ -12,11 +12,21 @@
                     <label>Hide Price</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="replacement_price" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Replacement phrase for price</label>
+                <field id="hide_wishlist" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Hide Wishlist</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="replacement_add_to_cart" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="hide_compare" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Hide Compare Product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="replacement_price" translate="label" type="editor" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Replacement phrase for price</label>
+                    <frontend_model>Eleanorsoft\NonBuyableProducts\Block\Adminhtml\Editor</frontend_model>
+                </field>
+                <field id="replacement_add_to_cart" translate="label" type="editor" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Replacement phrase for “add to cart”</label>
+                    <frontend_model>Eleanorsoft\NonBuyableProducts\Block\Adminhtml\Editor</frontend_model>
                 </field>
             </group>
         </section>

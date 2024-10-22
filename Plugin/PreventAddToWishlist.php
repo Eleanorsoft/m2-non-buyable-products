@@ -4,8 +4,10 @@ namespace Eleanorsoft\NonBuyableProducts\Plugin;
 
 use Eleanorsoft\NonBuyableProducts\Helper\Data;
 use Magento\Catalog\Model\Product;
+use Magento\Checkout\Model\Cart;
+use Magento\Framework\DataObject;
 
-class HideAddToButton
+class PreventAddToWishlist
 {
     /**
      * @var Data
@@ -30,18 +32,17 @@ class HideAddToButton
     }
 
     /**
-     * @param Product $product
-     * @return bool
+     * @param int|Product $product
+     * @param DataObject|array|string|null $buyRequest
+     * @param bool $forciblySetQty
+     * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function afterIsSaleable(\Magento\Catalog\Model\Product $product)
+    public function beforeAddNewItem($product, $buyRequest = null, $forciblySetQty = false)
     {
-        $localProduct = $this->productRepository->get($product->getSku());
-
-        if($this->helper->isModuleEnabled() && boolval($localProduct->getData('non_buyable'))) {
-            return false;
+        $product = $this->productRepository->getById($buyRequest->getId());
+        if($this->helper->isModuleEnabled() && boolval($product->getData('non_buyable')) && $this->helper->getHideWishlistConfigData()) {
+            throw new \Magento\Framework\Exception\LocalizedException(__("Product can't be added to wishlist"));
         }
-
-        return true;
     }
 }

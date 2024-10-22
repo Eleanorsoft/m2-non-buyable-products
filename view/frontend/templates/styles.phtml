@@ -1,0 +1,22 @@
+<?php
+/** @var $block \Eleanorsoft\NonBuyableProducts\Block\Styles */
+
+$nonSaleableCollection = $block->getCollection();
+?>
+
+<style>
+    <?php foreach ($nonSaleableCollection as $item) : ?>
+        <?php if($this->helper->isModuleEnabled() && $block->helper->getHideWishlistConfigData()) :?>
+            #product-item-info_<?= $item->getId() ?> .towishlist{
+                display: none;
+            }
+        <?php endif; ?>
+
+        <?php if($this->helper->isModuleEnabled() && $block->helper->getHideCompareConfigData()) :?>
+            #product-item-info_<?= $item->getId() ?> .tocompare{
+                display: none;
+            }
+        <?php endif; ?>
+    <?php endforeach; ?>
+</style>
+

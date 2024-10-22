@@ -1,8 +1,8 @@
 <?php
 
-namespace Eleanorsoft\NonBuyableProducts\Block\ReplaceButton;
+namespace Eleanorsoft\NonBuyableProducts\Block;
 
-class Condition extends \Magento\Catalog\Block\Product\View
+class Styles extends \Magento\Catalog\Block\Product\View
 {
     /**
      * @var \Eleanorsoft\NonBuyableProducts\Helper\Data
@@ -13,6 +13,11 @@ class Condition extends \Magento\Catalog\Block\Product\View
      * @var \Magento\Framework\Registry
      */
     protected $registry;
+
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
+     */
+    protected $collectionFactory;
 
     /**
      * @param \Magento\Catalog\Block\Product\Context $context
@@ -42,24 +47,26 @@ class Condition extends \Magento\Catalog\Block\Product\View
         \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency,
         \Eleanorsoft\NonBuyableProducts\Helper\Data $helper,
         \Magento\Framework\Registry $registry,
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory,
         array $data = []
     )
     {
         $this->helper = $helper;
         $this->registry = $registry;
+        $this->collectionFactory = $collectionFactory;
+
         parent::__construct($context, $urlEncoder, $jsonEncoder, $string, $productHelper, $productTypeConfig, $localeFormat, $customerSession, $productRepository, $priceCurrency, $data);
     }
 
     /**
-     * @return string
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
-    public function _toHtml()
+    public function getCollection()
     {
-        $product = $this->registry->registry('current_product');
-        if (boolval($product->getData('non_buyable')) && $this->helper->isModuleEnabled() && $this->helper->getReplacementPhraseForAddToCart() && strlen($this->helper->getReplacementPhraseForAddToCart()) > 0
-        ) {
-            $this->_template = 'Eleanorsoft_NonBuyableProducts::addtocart.phtml';
-        }
-        return parent::_toHtml();
+        $collection = $this->collectionFactory->create()
+            ->addAttributeToSelect('id')
+            ->addAttributeToFilter('non_buyable', 1);
+
+        return $collection;
     }
 }
