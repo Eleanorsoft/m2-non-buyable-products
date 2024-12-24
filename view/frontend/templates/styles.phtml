@@ -19,6 +19,12 @@ $nonSaleableCollection = $block->getCollection();
                 display: none;
             }
         <?php endif; ?>
+        <?php if($this->helper->isModuleEnabled()) :?>
+            .product-item-info .swatch-opt-<?= $item->getId() ?> + .product-item-inner .stock,
+            .product-item-info .price-box[data-product-id="<?= $item->getId() ?>"] + .product-item-inner .stock {
+                display: none;
+            }
+        <?php endif; ?>
     <?php endforeach; ?>
 </style>
 
