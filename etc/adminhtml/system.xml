@@ -6,26 +6,32 @@
                 <label>Eleanorsoft Non-buyable products</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                     <label>Enabled</label>
+                    <comment><![CDATA[Products that are marked as ‘Cannot be bought’ will not show ‘Add to cart’ button. See individual product edit page for the corresponding attribute. Also it’s possible to remove price, wishlist and comparison for those products.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="hide_price" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                     <label>Hide Price</label>
+                    <comment><![CDATA[Product prices that are marked as ‘Cannot be bought’ will be hidden throughout the website. Additionally it is possible to use replacement text for price (see below).]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="hide_wishlist" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Hide Wishlist</label>
+                    <comment><![CDATA[Users won’t be able to add products that are marked as ‘Cannot be bought’ to their wishlists.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="hide_compare" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Hide Compare Product</label>
+                    <comment><![CDATA[Users won’t be able to compare products that are marked as ‘Cannot be bought’ with others.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="replacement_price" translate="label" type="editor" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Replacement phrase for price</label>
+                    <label>Replacement phrase for Price</label>
+                    <comment><![CDATA[This text will be shown instead of product price. HTML is allowed.]]></comment>
                     <frontend_model>Eleanorsoft\NonBuyableProducts\Block\Adminhtml\Editor</frontend_model>
                 </field>
                 <field id="replacement_add_to_cart" translate="label" type="editor" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Replacement phrase for “add to cart”</label>
+                    <label>Replacement phrase for “Add to Cart” button</label>
+                    <comment><![CDATA[This text will be shown instead of ‘Add to Cart’ button on product details. HTML is allowed.]]></comment>
                     <frontend_model>Eleanorsoft\NonBuyableProducts\Block\Adminhtml\Editor</frontend_model>
                 </field>
             </group>

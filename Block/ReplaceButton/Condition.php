@@ -56,7 +56,7 @@ class Condition extends \Magento\Catalog\Block\Product\View
     public function _toHtml()
     {
         $product = $this->registry->registry('current_product');
-        if (boolval($product->getData('non_buyable')) && $this->helper->isModuleEnabled() && $this->helper->getReplacementPhraseForAddToCart() && strlen($this->helper->getReplacementPhraseForAddToCart()) > 0
+        if (boolval($product->getData('non_buyable')) && $this->helper->isModuleEnabled() /*&& $this->helper->getReplacementPhraseForAddToCart() && strlen($this->helper->getReplacementPhraseForAddToCart()) > 0 */
         ) {
             $this->_template = 'Eleanorsoft_NonBuyableProducts::addtocart.phtml';
         }

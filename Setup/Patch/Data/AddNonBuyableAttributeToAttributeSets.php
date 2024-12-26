@@ -85,8 +85,6 @@ class AddNonBuyableAttributeToAttributeSets implements DataPatchInterface, Patch
      */
     public function apply()
     {
-        $this->state->setAreaCode('adminhtml');
-
         $eavSetup = $this->eavSetupFactory->create();
         $eavSetup->addAttribute(
             Product::ENTITY,
@@ -94,7 +92,7 @@ class AddNonBuyableAttributeToAttributeSets implements DataPatchInterface, Patch
             [
                 'group'         => self::ATTRIBUTE_GROUP,
                 'type'          => 'varchar',
-                'label'         => 'Non salable',
+                'label'         => 'Can\'t be bought?',
                 'input'    => 'boolean',
                 'source'   => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
                 'required'      => false,

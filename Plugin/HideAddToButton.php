@@ -17,16 +17,20 @@ class HideAddToButton
      */
     protected $productRepository;
 
+    protected $request;
+
     /**
      * @param Data $helper
      * @param \Magento\Catalog\Model\ProductRepository $productRepository
      */
     public function __construct(
         Data $helper,
-        \Magento\Catalog\Model\ProductRepository $productRepository
+        \Magento\Catalog\Model\ProductRepository $productRepository,
+        \Magento\Framework\App\Request\Http $request
     ){
         $this->helper = $helper;
         $this->productRepository = $productRepository;
+        $this->request = $request;
     }
 
     /**
@@ -37,9 +41,12 @@ class HideAddToButton
     public function afterIsSaleable(\Magento\Catalog\Model\Product $product)
     {
         $localProduct = $this->productRepository->get($product->getSku());
-
         if($this->helper->isModuleEnabled() && boolval($localProduct->getData('non_buyable'))) {
-            return false;
+            if(in_array($this->request->getFullActionName(), ["catalogsearch_result_index", "catalog_category_view", "cms_index_index"])){
+                return false;
+            }
+
+            return true;
         }
 
         return true;
